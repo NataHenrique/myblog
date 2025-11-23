@@ -1,0 +1,105 @@
+---
+title: "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)"
+author: "Natã Henrique"
+date: "2025-11-23"
+categories: [api, python, economia]
+image: "dolar.jpg"
+jupyter: python3
+resources:
+  - grafico_dolar.html
+---
+
+
+## Introdução
+Neste post demonstro como consultar a cotação do dólar dia a dia usando Python e a API pública PTAX do Banco Central, tratando dias sem cotação (feriados e finais de semana) e gerando um gráfico interativo com Plotly.
+
+---
+
+## Função para buscar a cotação de um único dia
+
+```{python}
+import requests
+import pandas as pd
+from datetime import datetime, timedelta
+import calendar
+import plotly.express as px
+
+def pegar_cotacao_dia(dia):
+    
+    data_formatada = dia.strftime("%m-%d-%Y")
+
+    url = (
+        "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/"
+        f"CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='{data_formatada}'"
+        "&$format=json"
+    )
+
+    r = requests.get(url).json()
+
+    if "value" in r and len(r["value"]) > 0:
+        return r["value"][0]["cotacaoVenda"]
+    return None
+
+```
+
+Aqui consultamos o endpoint oficial da API Olinda/PTAX.
+Se um dia não tiver cotação (ex.: feriado), retornamos None.
+
+## Função para consultar todas as cotações do mês
+
+```{python}
+def cotacao_mes_dia_a_dia(periodo: str):
+    # periodo = MMYYYY
+    inicio = datetime.strptime(periodo, "%m%Y")
+    fim = inicio.replace(day=calendar.monthrange(inicio.year, inicio.month)[1])
+
+    datas = []
+    cotacoes = []
+
+    ultimo_valor = None
+
+    dia = inicio
+    while dia <= fim:
+        valor = pegar_cotacao_dia(dia)
+
+        if valor is None:
+            # usa último valor conhecido
+            valor = ultimo_valor
+
+        cotacoes.append(valor)
+        datas.append(dia)
+
+        if valor is not None:
+            ultimo_valor = valor  # atualiza último valor válido
+
+        dia += timedelta(days=1)
+
+    df = pd.DataFrame({"Data": datas, "Cotação": cotacoes})
+
+    # Remove linhas sem valor (caso o mês comece com feriado)
+    df["Cotação"] = df["Cotação"].ffill()
+
+    fig = px.line(
+        df,
+        x="Data",
+        y="Cotação",
+        title=f"Cotação do Dólar – {periodo[:2]}/{periodo[2:]} (Consulta Dia a Dia)",
+    )
+
+    fig.write_html("grafico_dolar.html")
+    fig.show()
+
+    return df
+
+
+```
+
+Essa função percorre todo o mês, dia por dia, usando a API do Banco Central.
+Qualquer dia sem valor recebe o último conhecido, garantindo o gráfico completo.
+
+
+## Executando para o mês desejado
+
+```{python}
+cotacao_mes_dia_a_dia("022015")
+```

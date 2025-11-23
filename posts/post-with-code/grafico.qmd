@@ -1,0 +1,118 @@
+---
+title: "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário"
+author: "Natã Henrique"
+date: "2025-11-23"
+categories: [python, estatistica, regressao]
+image: "regressao.jpg"
+jupyter: python3
+resources:
+  - grafico.html
+  - grafico.pngSS
+--- 
+
+
+## Introdução
+Neste post demonstro como realizar uma regressão linear simples utilizando Python, a fim de estimar a relação entre anos de estudo (X) e salário (y). O procedimento inclui leitura dos dados, construção da matriz estendida, cálculo analítico dos coeficientes pelo método dos mínimos quadrados e geração de um gráfico interativo com Plotly exibindo tanto os pontos reais quanto a reta ajustada.
+
+
+---
+
+## 1) Leitura dos dados
+
+```{python}
+import numpy as np
+import plotly.graph_objects as go
+
+
+X = np.loadtxt("X.txt")
+y = np.loadtxt("Y.txt")
+
+```
+Os dados são carregados a partir de dois arquivos texto:
+X.txt contendo os anos de estudo e y.txt contendo os valores de salário correspondentes.
+
+## 2) Cálculo dos coeficientes da regressão
+
+A regressão linear simples segue a fórmula matricial clássica, onde β contém o intercepto e o coeficiente angular da reta.
+
+```{python}
+X_mat = np.column_stack([np.ones_like(X), X])
+beta = np.linalg.inv(X_mat.T @ X_mat) @ (X_mat.T @ y)
+
+a, b = beta[0], beta[1]   # intercepto e coeficiente angular
+
+print("Coeficientes encontrados:")
+print("a (intercepto) =", a)
+print("b (inclinação) =", b)
+
+
+```
+
+Aqui adicionamos uma coluna de 1s à matriz para representar o intercepto.
+Após a multiplicação matricial, obtemos a, intercepto da reta, e b, coeficiente angular.
+
+
+## 3) Criando a reta estimada
+
+```{python}
+y_pred = a + b * X
+```
+
+## 4) Gerando o gráfico interativo
+O gráfico exibe dois elementos:
+
+Pontos reais dos dados observados
+
+Reta estimada pela regressão linear
+
+```{python}
+fig = go.Figure()
+
+
+fig.add_trace(go.Scatter(
+    x=X,
+    y=y,
+    mode="markers",
+    name="Dados reais"
+))
+
+
+fig.add_trace(go.Scatter(
+    x=X,
+    y=y_pred,
+    mode="lines",
+    name="Reta estimada"
+))
+
+fig.update_layout(
+    title="Regressão Linear – Anos de estudo vs Salário",
+    xaxis_title="Anos de estudo (X)",
+    yaxis_title="Salário (y)",
+)
+
+fig.write_html("grafico.html")  # gráfico interativo
+fig.show()  # exibe no HTML renderizado
+
+print("Arquivos gerados:")
+print(" - grafico.html")
+
+
+
+```
+
+O código salva uma versão interativa em HTML.
+
+## 6) Conclusão
+Com poucas linhas de código, foi possível:
+
+Ler dados externos
+
+Construir a matriz da regressão
+
+Calcular os coeficientes analiticamente
+
+Gerar a reta estimada
+
+Criar um gráfico interativo que representa claramente a relação entre anos de estudo e salário
+
+Esse é o método mais direto para compreender regressão linear sem bibliotecas externas de machine learning — ideal para estudo, análise estatística inicial e visualização de tendências reais.

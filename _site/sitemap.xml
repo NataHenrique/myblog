@@ -16,4 +16,16 @@
     <loc>https://your-website-url.example.com/index.html</loc>
     <lastmod>2025-11-23T04:05:12.204Z</lastmod>
   </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/post-with-code/dolar.html</loc>
+    <lastmod>2025-11-23T05:26:50.631Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/post-with-code/busao.html</loc>
+    <lastmod>2025-11-23T05:14:05.386Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/post-with-code/grafico.html</loc>
+    <lastmod>2025-11-23T05:52:01.388Z</lastmod>
+  </url>
 </urlset>
