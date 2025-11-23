@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Sobre Mim</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="autenticação-na-api-e-busca-da-linha" class="level2">
 <h2 class="anchored" data-anchor-id="autenticação-na-api-e-busca-da-linha">Autenticação na API e busca da linha</h2>
-<div id="e320ef3c" class="cell" data-execution_count="1">
+<div id="ed5ff958" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> webbrowser</span>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Aqui realizo o login na API, procuro a linha informada e obtenho o código interno da linha, necessário para consultar paradas e veículos.</p>
 <p>🔹 Buscando paradas e gerando o mapa base</p>
-<div id="620e5376" class="cell" data-execution_count="2">
+<div id="e63af1b6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>resp_paradas <span class="op">=</span> session.get(<span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/Parada/BuscarParadasPorLinha?codigoLinha=</span><span class="sc">{</span>codigo_linha<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>paradas <span class="op">=</span> resp_paradas.json()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Aqui consulto todas as paradas da linha e marco cada uma no mapa usando Folium.</p>
 <p>🔹 Obtendo a posição dos ônibus e finalizando o mapa</p>
-<div id="bd55ec70" class="cell" data-execution_count="3">
+<div id="cbec2120" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>resp_posicao <span class="op">=</span> session.get(<span class="ss">f"</span><span class="sc">{</span>BASE_URL<span class="sc">}</span><span class="ss">/Posicao/Linha?codigoLinha=</span><span class="sc">{</span>codigo_linha<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dados <span class="op">=</span> resp_posicao.json()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>

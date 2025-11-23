@@ -16,16 +16,16 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Sobre Mim",
     "section": "",
-    "text": "About this blog"
+    "text": "Sou Natã Henrique, desenvolvedor apaixonado por tecnologia, jogos e programação. Técnico em Informática e estudante de Engenharia da Computação (2º semestre), utilizo este blog para compartilhar minha evolução, estudos e projetos nas áreas de Back-End, Unity, Python, PHP, MySQL, JavaScript e outras tecnologias que fazem parte do meu dia a dia.\nAqui publico conteúdos práticos, tutoriais, análises e anotações que considero úteis tanto para quem está iniciando quanto para quem busca se aprofundar. Meu objetivo é contribuir para a comunidade, aprender continuamente e registrar minha própria jornada no mundo da tecnologia."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "myblog",
+    "title": "Blog do Natã",
     "section": "",
-    "text": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo\n\n\n\napi\n\npython\n\nmaps\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nCotação do Dólar – Consulta Dia a Dia com Python (API PTAX)\n\n\n\napi\n\npython\n\neconomia\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nRegressão Linear – Estimando Relação entre Anos de Estudo e Salário\n\n\n\npython\n\nestatistica\n\nregressao\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nNov 20, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo\n\n\n\napi\n\npython\n\nmaps\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nCotação do Dólar – Consulta Dia a Dia com Python (API PTAX)\n\n\n\napi\n\npython\n\neconomia\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nRegressão Linear – Estimando Relação entre Anos de Estudo e Salário\n\n\n\npython\n\nestatistica\n\nregressao\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html#introdução",
@@ -81,7 +81,7 @@
     "href": "posts/post-with-code/dolar.html#executando-para-o-mês-desejado",
     "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
     "section": "Executando para o mês desejado",
-    "text": "Executando para o mês desejado\n\ncotacao_mes_dia_a_dia(\"022015\")\n\n                            \n                                            \n\n\n\n\n\n\n\n\n\nData\nCotação\n\n\n\n\n0\n2015-02-01\nNaN\n\n\n1\n2015-02-02\n2.6894\n\n\n2\n2015-02-03\n2.7059\n\n\n3\n2015-02-04\n2.7148\n\n\n4\n2015-02-05\n2.7386\n\n\n5\n2015-02-06\n2.7641\n\n\n6\n2015-02-07\n2.7641\n\n\n7\n2015-02-08\n2.7641\n\n\n8\n2015-02-09\n2.7873\n\n\n9\n2015-02-10\n2.8075\n\n\n10\n2015-02-11\n2.8576\n\n\n11\n2015-02-12\n2.8625\n\n\n12\n2015-02-13\n2.8392\n\n\n13\n2015-02-14\n2.8392\n\n\n14\n2015-02-15\n2.8392\n\n\n15\n2015-02-16\n2.8392\n\n\n16\n2015-02-17\n2.8392\n\n\n17\n2015-02-18\n2.8430\n\n\n18\n2015-02-19\n2.8545\n\n\n19\n2015-02-20\n2.8701\n\n\n20\n2015-02-21\n2.8701\n\n\n21\n2015-02-22\n2.8701\n\n\n22\n2015-02-23\n2.8811\n\n\n23\n2015-02-24\n2.8649\n\n\n24\n2015-02-25\n2.8646\n\n\n25\n2015-02-26\n2.8728\n\n\n26\n2015-02-27\n2.8782\n\n\n27\n2015-02-28\n2.8782\n\n\n\n\n\n\n\n📊 Gráfico Interativo Final\nO arquivo HTML gerado será exibido abaixo:"
+    "text": "Executando para o mês desejado\n\ncotacao_mes_dia_a_dia(\"022015\")\n\n                            \n                                            \n\n\n\n\n\n\n\n\n\nData\nCotação\n\n\n\n\n0\n2015-02-01\nNaN\n\n\n1\n2015-02-02\n2.6894\n\n\n2\n2015-02-03\n2.7059\n\n\n3\n2015-02-04\n2.7148\n\n\n4\n2015-02-05\n2.7386\n\n\n5\n2015-02-06\n2.7641\n\n\n6\n2015-02-07\n2.7641\n\n\n7\n2015-02-08\n2.7641\n\n\n8\n2015-02-09\n2.7873\n\n\n9\n2015-02-10\n2.8075\n\n\n10\n2015-02-11\n2.8576\n\n\n11\n2015-02-12\n2.8625\n\n\n12\n2015-02-13\n2.8392\n\n\n13\n2015-02-14\n2.8392\n\n\n14\n2015-02-15\n2.8392\n\n\n15\n2015-02-16\n2.8392\n\n\n16\n2015-02-17\n2.8392\n\n\n17\n2015-02-18\n2.8430\n\n\n18\n2015-02-19\n2.8545\n\n\n19\n2015-02-20\n2.8701\n\n\n20\n2015-02-21\n2.8701\n\n\n21\n2015-02-22\n2.8701\n\n\n22\n2015-02-23\n2.8811\n\n\n23\n2015-02-24\n2.8649\n\n\n24\n2015-02-25\n2.8646\n\n\n25\n2015-02-26\n2.8728\n\n\n26\n2015-02-27\n2.8782\n\n\n27\n2015-02-28\n2.8782"
   },
   {
     "objectID": "posts/post-with-code/busao.html",

@@ -3,7 +3,7 @@ title: "Regressão Linear – Estimando Relação entre Anos de Estudo e Salári
 author: "Natã Henrique"
 date: "2025-11-23"
 categories: [python, estatistica, regressao]
-image: "regressao.jpg"
+image: "grafico.jpg"
 jupyter: python3
 resources:
   - grafico.html

@@ -1,1 +1,163 @@
-/* css styles */
+/* ============================
+   VARIÁVEIS DE TEMA
+============================ */
+:root {
+    --bg: #f6f7f9;
+    --bg-card: #ffffff;
+    --text: #222;
+    --text-light: #555;
+    --primary: #2d6cdf;
+    --primary-dark: #1f4ea7;
+    --border: #e1e4e8;
+    --radius: 12px;
+    --shadow: 0 4px 16px rgba(0,0,0,0.06);
+    --font-title: "Merriweather", serif;
+    --font-body: "Inter", sans-serif;
+}
+
+/* ============================
+   BASE
+============================ */
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    font-family: var(--font-body);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+img {
+    max-width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ============================
+   LAYOUT
+============================ */
+.container {
+    width: 95%;
+    max-width: 850px;
+    margin: 40px auto;
+}
+
+/* ============================
+   CABEÇALHO
+============================ */
+header {
+    background: var(--bg-card);
+    padding: 40px 0;
+    box-shadow: var(--shadow);
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+header h1 {
+    font-family: var(--font-title);
+    text-align: center;
+    margin: 0;
+    font-size: 2.6rem;
+    color: var(--primary-dark);
+}
+
+header p {
+    text-align: center;
+    margin-top: 8px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* ============================
+   POST
+============================ */
+.post {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.post h2,
+.post h3 {
+    font-family: var(--font-title);
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+}
+
+.post h2 {
+    font-size: 2.1rem;
+}
+
+.post h3 {
+    font-size: 1.6rem;
+}
+
+.post p {
+    color: var(--text);
+    font-size: 1.05rem;
+}
+
+.post pre {
+    background: #1e1e1e;
+    color: #fff;
+    padding: 20px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 0.95rem;
+}
+
+/* ============================
+   LISTAS
+============================ */
+.post ul {
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.post ul li {
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+/* ============================
+   BOTÕES
+============================ */
+.button {
+    padding: 12px 24px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.button:hover {
+    background: var(--primary-dark);
+}
+
+/* ============================
+   FOOTER
+============================ */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 40px;
+}

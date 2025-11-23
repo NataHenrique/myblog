@@ -3,8 +3,8 @@ title: "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo"
 author: "Natã Henrique"
 date: "2025-11-23"
 categories: [api, python, maps]
-image: "busao.jpg"
-upyter: python3
+image: "busao.png"
+Jupyter: python3
 resources:
   - mapa_onibus.html
 ---

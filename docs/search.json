@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "posts/post-with-code/grafico.html",
+    "href": "posts/post-with-code/grafico.html",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "",
+    "text": "Neste post demonstro como realizar uma regressão linear simples utilizando Python, a fim de estimar a relação entre anos de estudo (X) e salário (y). O procedimento inclui leitura dos dados, construção da matriz estendida, cálculo analítico dos coeficientes pelo método dos mínimos quadrados e geração de um gráfico interativo com Plotly exibindo tanto os pontos reais quanto a reta ajustada."
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#introdução",
+    "href": "posts/post-with-code/grafico.html#introdução",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "",
+    "text": "Neste post demonstro como realizar uma regressão linear simples utilizando Python, a fim de estimar a relação entre anos de estudo (X) e salário (y). O procedimento inclui leitura dos dados, construção da matriz estendida, cálculo analítico dos coeficientes pelo método dos mínimos quadrados e geração de um gráfico interativo com Plotly exibindo tanto os pontos reais quanto a reta ajustada."
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#leitura-dos-dados",
+    "href": "posts/post-with-code/grafico.html#leitura-dos-dados",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "1) Leitura dos dados",
+    "text": "1) Leitura dos dados\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n\nX = np.loadtxt(\"X.txt\")\ny = np.loadtxt(\"Y.txt\")\n\nOs dados são carregados a partir de dois arquivos texto: X.txt contendo os anos de estudo e y.txt contendo os valores de salário correspondentes."
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#cálculo-dos-coeficientes-da-regressão",
+    "href": "posts/post-with-code/grafico.html#cálculo-dos-coeficientes-da-regressão",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "2) Cálculo dos coeficientes da regressão",
+    "text": "2) Cálculo dos coeficientes da regressão\nA regressão linear simples segue a fórmula matricial clássica, onde β contém o intercepto e o coeficiente angular da reta.\n\nX_mat = np.column_stack([np.ones_like(X), X])\nbeta = np.linalg.inv(X_mat.T @ X_mat) @ (X_mat.T @ y)\n\na, b = beta[0], beta[1]   # intercepto e coeficiente angular\n\nprint(\"Coeficientes encontrados:\")\nprint(\"a (intercepto) =\", a)\nprint(\"b (inclinação) =\", b)\n\nCoeficientes encontrados:\na (intercepto) = 373.93446839132355\nb (inclinação) = 991.6278332981952\n\n\nAqui adicionamos uma coluna de 1s à matriz para representar o intercepto. Após a multiplicação matricial, obtemos a, intercepto da reta, e b, coeficiente angular."
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#criando-a-reta-estimada",
+    "href": "posts/post-with-code/grafico.html#criando-a-reta-estimada",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "3) Criando a reta estimada",
+    "text": "3) Criando a reta estimada\n\ny_pred = a + b * X"
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#gerando-o-gráfico-interativo",
+    "href": "posts/post-with-code/grafico.html#gerando-o-gráfico-interativo",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "4) Gerando o gráfico interativo",
+    "text": "4) Gerando o gráfico interativo\nO gráfico exibe dois elementos:\nPontos reais dos dados observados\nReta estimada pela regressão linear\n\nfig = go.Figure()\n\n\nfig.add_trace(go.Scatter(\n    x=X,\n    y=y,\n    mode=\"markers\",\n    name=\"Dados reais\"\n))\n\n\nfig.add_trace(go.Scatter(\n    x=X,\n    y=y_pred,\n    mode=\"lines\",\n    name=\"Reta estimada\"\n))\n\nfig.update_layout(\n    title=\"Regressão Linear – Anos de estudo vs Salário\",\n    xaxis_title=\"Anos de estudo (X)\",\n    yaxis_title=\"Salário (y)\",\n)\n\nfig.write_html(\"grafico.html\")  # gráfico interativo\nfig.show()  # exibe no HTML renderizado\n\nprint(\"Arquivos gerados:\")\nprint(\" - grafico.html\")\n\n                            \n                                            \n\n\nArquivos gerados:\n - grafico.html\n\n\nO código salva uma versão interativa em HTML."
+  },
+  {
+    "objectID": "posts/post-with-code/grafico.html#conclusão",
+    "href": "posts/post-with-code/grafico.html#conclusão",
+    "title": "Regressão Linear – Estimando Relação entre Anos de Estudo e Salário",
+    "section": "6) Conclusão",
+    "text": "6) Conclusão\nCom poucas linhas de código, foi possível:\nLer dados externos\nConstruir a matriz da regressão\nCalcular os coeficientes analiticamente\nGerar a reta estimada\nCriar um gráfico interativo que representa claramente a relação entre anos de estudo e salário\nEsse é o método mais direto para compreender regressão linear sem bibliotecas externas de machine learning — ideal para estudo, análise estatística inicial e visualização de tendências reais."
+  },
+  {
+    "objectID": "posts/post-with-code/busao.html",
+    "href": "posts/post-with-code/busao.html",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "",
+    "text": "Neste post mostro como construí um mapa interativo usando Python, Folium e a API pública Olho Vivo da SPTrans."
+  },
+  {
+    "objectID": "posts/post-with-code/busao.html#introdução",
+    "href": "posts/post-with-code/busao.html#introdução",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "",
+    "text": "Neste post mostro como construí um mapa interativo usando Python, Folium e a API pública Olho Vivo da SPTrans."
+  },
+  {
+    "objectID": "posts/post-with-code/busao.html#autenticação-na-api-e-busca-da-linha",
+    "href": "posts/post-with-code/busao.html#autenticação-na-api-e-busca-da-linha",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "Autenticação na API e busca da linha",
+    "text": "Autenticação na API e busca da linha\n\nimport requests\nimport folium\nimport webbrowser\nimport os\n\nTOKEN = \"b07b39ca6bcf06d0e3b9f3e54c99fd54e03ebcde54736c1badfea0daf3f92805\"\nBASE_URL = \"http://api.olhovivo.sptrans.com.br/v2.1\"\n\nsession = requests.Session()\nauth = session.post(f\"{BASE_URL}/Login/Autenticar?token={TOKEN}\")\n\nif auth.json() != True:\n    print(\"Falha na autenticação!\")\n    raise SystemExit()\n\nprint(\"Autenticado com sucesso!\")\n\nlinha_digitada = \"697\"\nresp_linhas = session.get(f\"{BASE_URL}/Linha/Buscar?termosBusca={linha_digitada}\")\nlinhas = resp_linhas.json()\n\nif not linhas:\n    print(\"Linha não encontrada!\")\n    raise SystemExit()\n\nlinha = linhas[0]\ncodigo_linha = linha['cl']\nlinha\n\nAutenticado com sucesso!\n\n\n{'cl': 1505,\n 'lc': False,\n 'lt': '6970',\n 'sl': 1,\n 'tl': 10,\n 'tp': 'TERM. STO. AMARO',\n 'ts': 'TERM. GRAJAÚ'}\n\n\nAqui realizo o login na API, procuro a linha informada e obtenho o código interno da linha, necessário para consultar paradas e veículos.\n🔹 Buscando paradas e gerando o mapa base\n\nresp_paradas = session.get(f\"{BASE_URL}/Parada/BuscarParadasPorLinha?codigoLinha={codigo_linha}\")\nparadas = resp_paradas.json()\n\nif not paradas:\n    print(\"Nenhuma parada encontrada!\")\n    raise SystemExit()\n\nlat_centro = paradas[0][\"py\"]\nlon_centro = paradas[0][\"px\"]\n\nmapa = folium.Map(location=[lat_centro, lon_centro], zoom_start=14)\n\nfor p in paradas:\n    folium.Marker(\n        location=[p[\"py\"], p[\"px\"]],\n        popup=p[\"np\"],\n        icon=folium.Icon(color=\"blue\", icon=\"bus\")\n    ).add_to(mapa)\n\nlen(paradas)\n\n15\n\n\nAqui consulto todas as paradas da linha e marco cada uma no mapa usando Folium.\n🔹 Obtendo a posição dos ônibus e finalizando o mapa\n\nresp_posicao = session.get(f\"{BASE_URL}/Posicao/Linha?codigoLinha={codigo_linha}\")\ndados = resp_posicao.json()\n\nonibus = dados.get(\"vs\", [])\n\nfor bus in onibus:\n    folium.Marker(\n        location=[bus[\"py\"], bus[\"px\"]],\n        popup=f\"Prefixo: {bus.get('p')} – Velocidade: {bus.get('v')} km/h\",\n        icon=folium.Icon(color=\"red\", icon=\"info-sign\")\n    ).add_to(mapa)\n    mapa.save(\"mapa_onibus.html\")\n\nAqui marco cada ônibus ativo no mapa.\nConclusão Com poucos blocos de código conseguimos autenticar, consultar linha, paradas, posição dos veículos e exibir tudo em um mapa interativo."
+  },
+  {
+    "objectID": "posts/post-with-code/busao.html#mapa-final",
+    "href": "posts/post-with-code/busao.html#mapa-final",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "Mapa Final",
+    "text": "Mapa Final"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre Mim",
+    "section": "",
+    "text": "Sou Natã Henrique, desenvolvedor apaixonado por tecnologia, jogos e programação. Técnico em Informática e estudante de Engenharia da Computação (2º semestre), utilizo este blog para compartilhar minha evolução, estudos e projetos nas áreas de Back-End, Unity, Python, PHP, MySQL, JavaScript e outras tecnologias que fazem parte do meu dia a dia.\nAqui publico conteúdos práticos, tutoriais, análises e anotações que considero úteis tanto para quem está iniciando quanto para quem busca se aprofundar. Meu objetivo é contribuir para a comunidade, aprender continuamente e registrar minha própria jornada no mundo da tecnologia."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog do Natã",
+    "section": "",
+    "text": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo\n\n\n\napi\n\npython\n\nmaps\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nCotação do Dólar – Consulta Dia a Dia com Python (API PTAX)\n\n\n\napi\n\npython\n\neconomia\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nRegressão Linear – Estimando Relação entre Anos de Estudo e Salário\n\n\n\npython\n\nestatistica\n\nregressao\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/dolar.html",
+    "href": "posts/post-with-code/dolar.html",
+    "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
+    "section": "",
+    "text": "Neste post demonstro como consultar a cotação do dólar dia a dia usando Python e a API pública PTAX do Banco Central, tratando dias sem cotação (feriados e finais de semana) e gerando um gráfico interativo com Plotly."
+  },
+  {
+    "objectID": "posts/post-with-code/dolar.html#introdução",
+    "href": "posts/post-with-code/dolar.html#introdução",
+    "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
+    "section": "",
+    "text": "Neste post demonstro como consultar a cotação do dólar dia a dia usando Python e a API pública PTAX do Banco Central, tratando dias sem cotação (feriados e finais de semana) e gerando um gráfico interativo com Plotly."
+  },
+  {
+    "objectID": "posts/post-with-code/dolar.html#função-para-buscar-a-cotação-de-um-único-dia",
+    "href": "posts/post-with-code/dolar.html#função-para-buscar-a-cotação-de-um-único-dia",
+    "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
+    "section": "Função para buscar a cotação de um único dia",
+    "text": "Função para buscar a cotação de um único dia\n\nimport requests\nimport pandas as pd\nfrom datetime import datetime, timedelta\nimport calendar\nimport plotly.express as px\n\ndef pegar_cotacao_dia(dia):\n    \n    data_formatada = dia.strftime(\"%m-%d-%Y\")\n\n    url = (\n        \"https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/\"\n        f\"CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='{data_formatada}'\"\n        \"&$format=json\"\n    )\n\n    r = requests.get(url).json()\n\n    if \"value\" in r and len(r[\"value\"]) &gt; 0:\n        return r[\"value\"][0][\"cotacaoVenda\"]\n    return None\n\nAqui consultamos o endpoint oficial da API Olinda/PTAX. Se um dia não tiver cotação (ex.: feriado), retornamos None."
+  },
+  {
+    "objectID": "posts/post-with-code/dolar.html#função-para-consultar-todas-as-cotações-do-mês",
+    "href": "posts/post-with-code/dolar.html#função-para-consultar-todas-as-cotações-do-mês",
+    "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
+    "section": "Função para consultar todas as cotações do mês",
+    "text": "Função para consultar todas as cotações do mês\n\ndef cotacao_mes_dia_a_dia(periodo: str):\n    # periodo = MMYYYY\n    inicio = datetime.strptime(periodo, \"%m%Y\")\n    fim = inicio.replace(day=calendar.monthrange(inicio.year, inicio.month)[1])\n\n    datas = []\n    cotacoes = []\n\n    ultimo_valor = None\n\n    dia = inicio\n    while dia &lt;= fim:\n        valor = pegar_cotacao_dia(dia)\n\n        if valor is None:\n            # usa último valor conhecido\n            valor = ultimo_valor\n\n        cotacoes.append(valor)\n        datas.append(dia)\n\n        if valor is not None:\n            ultimo_valor = valor  # atualiza último valor válido\n\n        dia += timedelta(days=1)\n\n    df = pd.DataFrame({\"Data\": datas, \"Cotação\": cotacoes})\n\n    # Remove linhas sem valor (caso o mês comece com feriado)\n    df[\"Cotação\"] = df[\"Cotação\"].ffill()\n\n    fig = px.line(\n        df,\n        x=\"Data\",\n        y=\"Cotação\",\n        title=f\"Cotação do Dólar – {periodo[:2]}/{periodo[2:]} (Consulta Dia a Dia)\",\n    )\n\n    fig.write_html(\"grafico_dolar.html\")\n    fig.show()\n\n    return df\n\nEssa função percorre todo o mês, dia por dia, usando a API do Banco Central. Qualquer dia sem valor recebe o último conhecido, garantindo o gráfico completo."
+  },
+  {
+    "objectID": "posts/post-with-code/dolar.html#executando-para-o-mês-desejado",
+    "href": "posts/post-with-code/dolar.html#executando-para-o-mês-desejado",
+    "title": "Cotação do Dólar – Consulta Dia a Dia com Python (API PTAX)",
+    "section": "Executando para o mês desejado",
+    "text": "Executando para o mês desejado\n\ncotacao_mes_dia_a_dia(\"022015\")\n\n                            \n                                            \n\n\n\n\n\n\n\n\n\nData\nCotação\n\n\n\n\n0\n2015-02-01\nNaN\n\n\n1\n2015-02-02\n2.6894\n\n\n2\n2015-02-03\n2.7059\n\n\n3\n2015-02-04\n2.7148\n\n\n4\n2015-02-05\n2.7386\n\n\n5\n2015-02-06\n2.7641\n\n\n6\n2015-02-07\n2.7641\n\n\n7\n2015-02-08\n2.7641\n\n\n8\n2015-02-09\n2.7873\n\n\n9\n2015-02-10\n2.8075\n\n\n10\n2015-02-11\n2.8576\n\n\n11\n2015-02-12\n2.8625\n\n\n12\n2015-02-13\n2.8392\n\n\n13\n2015-02-14\n2.8392\n\n\n14\n2015-02-15\n2.8392\n\n\n15\n2015-02-16\n2.8392\n\n\n16\n2015-02-17\n2.8392\n\n\n17\n2015-02-18\n2.8430\n\n\n18\n2015-02-19\n2.8545\n\n\n19\n2015-02-20\n2.8701\n\n\n20\n2015-02-21\n2.8701\n\n\n21\n2015-02-22\n2.8701\n\n\n22\n2015-02-23\n2.8811\n\n\n23\n2015-02-24\n2.8649\n\n\n24\n2015-02-25\n2.8646\n\n\n25\n2015-02-26\n2.8728\n\n\n26\n2015-02-27\n2.8782\n\n\n27\n2015-02-28\n2.8782"
+  }
+]

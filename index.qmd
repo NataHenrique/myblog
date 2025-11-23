@@ -1,5 +1,5 @@
 ---
-title: "myblog"
+title: "Blog do Natã"
 listing:
   contents: posts
   feed: true
