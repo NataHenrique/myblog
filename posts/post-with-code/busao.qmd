@@ -1,0 +1,110 @@
+---
+title: "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo"
+author: "Natã Henrique"
+date: "2025-11-23"
+categories: [api, python, maps]
+image: "busao.jpg"
+upyter: python3
+resources:
+  - mapa_onibus.html
+---
+
+## Introdução
+Neste post mostro como construí um mapa interativo usando Python, Folium e a API pública Olho Vivo da SPTrans. 
+
+---
+
+## Autenticação na API e busca da linha
+
+```{python}
+import requests
+import folium
+import webbrowser
+import os
+
+TOKEN = "b07b39ca6bcf06d0e3b9f3e54c99fd54e03ebcde54736c1badfea0daf3f92805"
+BASE_URL = "http://api.olhovivo.sptrans.com.br/v2.1"
+
+session = requests.Session()
+auth = session.post(f"{BASE_URL}/Login/Autenticar?token={TOKEN}")
+
+if auth.json() != True:
+    print("Falha na autenticação!")
+    raise SystemExit()
+
+print("Autenticado com sucesso!")
+
+linha_digitada = "697"
+resp_linhas = session.get(f"{BASE_URL}/Linha/Buscar?termosBusca={linha_digitada}")
+linhas = resp_linhas.json()
+
+if not linhas:
+    print("Linha não encontrada!")
+    raise SystemExit()
+
+linha = linhas[0]
+codigo_linha = linha['cl']
+linha
+```
+
+Aqui realizo o login na API, procuro a linha informada e obtenho o código interno da linha, necessário para consultar paradas e veículos.
+
+🔹 Buscando paradas e gerando o mapa base
+
+```{python}
+resp_paradas = session.get(f"{BASE_URL}/Parada/BuscarParadasPorLinha?codigoLinha={codigo_linha}")
+paradas = resp_paradas.json()
+
+if not paradas:
+    print("Nenhuma parada encontrada!")
+    raise SystemExit()
+
+lat_centro = paradas[0]["py"]
+lon_centro = paradas[0]["px"]
+
+mapa = folium.Map(location=[lat_centro, lon_centro], zoom_start=14)
+
+for p in paradas:
+    folium.Marker(
+        location=[p["py"], p["px"]],
+        popup=p["np"],
+        icon=folium.Icon(color="blue", icon="bus")
+    ).add_to(mapa)
+
+len(paradas)
+```
+
+Aqui consulto todas as paradas da linha e marco cada uma no mapa usando Folium.
+
+🔹 Obtendo a posição dos ônibus e finalizando o mapa
+
+```{python}
+resp_posicao = session.get(f"{BASE_URL}/Posicao/Linha?codigoLinha={codigo_linha}")
+dados = resp_posicao.json()
+
+onibus = dados.get("vs", [])
+
+for bus in onibus:
+    folium.Marker(
+        location=[bus["py"], bus["px"]],
+        popup=f"Prefixo: {bus.get('p')} – Velocidade: {bus.get('v')} km/h",
+        icon=folium.Icon(color="red", icon="info-sign")
+    ).add_to(mapa)
+    mapa.save("mapa_onibus.html")
+
+
+```
+
+Aqui marco cada ônibus ativo no mapa.
+
+Conclusão
+Com poucos blocos de código conseguimos autenticar, consultar linha, paradas, posição dos veículos e exibir tudo em um mapa interativo.
+
+## Mapa Final
+
+<iframe 
+    src="mapa_onibus.html"
+    width="100%" 
+    height="600px" 
+    style="border:none;"
+></iframe>

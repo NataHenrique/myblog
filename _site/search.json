@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "",
+    "text": "Neste post mostro como construí um mapa interativo usando Python, Folium e a API pública Olho Vivo da SPTrans."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "myblog",
+    "section": "",
+    "text": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo\n\n\n\napi\n\npython\n\nmaps\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\nNatã Henrique\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nNov 20, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#introdução",
+    "href": "posts/post-with-code/index.html#introdução",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "",
+    "text": "Neste post mostro como construí um mapa interativo usando Python, Folium e a API pública Olho Vivo da SPTrans."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#autenticação-na-api-e-busca-da-linha",
+    "href": "posts/post-with-code/index.html#autenticação-na-api-e-busca-da-linha",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "Autenticação na API e busca da linha",
+    "text": "Autenticação na API e busca da linha\n\nimport requests\nimport folium\nimport webbrowser\nimport os\n\nTOKEN = \"b07b39ca6bcf06d0e3b9f3e54c99fd54e03ebcde54736c1badfea0daf3f92805\"\nBASE_URL = \"http://api.olhovivo.sptrans.com.br/v2.1\"\n\nsession = requests.Session()\nauth = session.post(f\"{BASE_URL}/Login/Autenticar?token={TOKEN}\")\n\nif auth.json() != True:\n    print(\"Falha na autenticação!\")\n    raise SystemExit()\n\nprint(\"Autenticado com sucesso!\")\n\nlinha_digitada = \"697\"\nresp_linhas = session.get(f\"{BASE_URL}/Linha/Buscar?termosBusca={linha_digitada}\")\nlinhas = resp_linhas.json()\n\nif not linhas:\n    print(\"Linha não encontrada!\")\n    raise SystemExit()\n\nlinha = linhas[0]\ncodigo_linha = linha['cl']\nlinha\n\nAutenticado com sucesso!\n\n\n{'cl': 1505,\n 'lc': False,\n 'lt': '6970',\n 'sl': 1,\n 'tl': 10,\n 'tp': 'TERM. STO. AMARO',\n 'ts': 'TERM. GRAJAÚ'}\n\n\nAqui realizo o login na API, procuro a linha informada e obtenho o código interno da linha, necessário para consultar paradas e veículos.\n🔹 Buscando paradas e gerando o mapa base\n\nresp_paradas = session.get(f\"{BASE_URL}/Parada/BuscarParadasPorLinha?codigoLinha={codigo_linha}\")\nparadas = resp_paradas.json()\n\nif not paradas:\n    print(\"Nenhuma parada encontrada!\")\n    raise SystemExit()\n\nlat_centro = paradas[0][\"py\"]\nlon_centro = paradas[0][\"px\"]\n\nmapa = folium.Map(location=[lat_centro, lon_centro], zoom_start=14)\n\nfor p in paradas:\n    folium.Marker(\n        location=[p[\"py\"], p[\"px\"]],\n        popup=p[\"np\"],\n        icon=folium.Icon(color=\"blue\", icon=\"bus\")\n    ).add_to(mapa)\n\nlen(paradas)\n\n15\n\n\nAqui consulto todas as paradas da linha e marco cada uma no mapa usando Folium.\n🔹 Obtendo a posição dos ônibus e finalizando o mapa\n\nresp_posicao = session.get(f\"{BASE_URL}/Posicao/Linha?codigoLinha={codigo_linha}\")\ndados = resp_posicao.json()\n\nonibus = dados.get(\"vs\", [])\n\nfor bus in onibus:\n    folium.Marker(\n        location=[bus[\"py\"], bus[\"px\"]],\n        popup=f\"Prefixo: {bus.get('p')} – Velocidade: {bus.get('v')} km/h\",\n        icon=folium.Icon(color=\"red\", icon=\"info-sign\")\n    ).add_to(mapa)\n    mapa.save(\"mapa_onibus.html\")\n\nExplicação Aqui marco cada ônibus ativo no mapa.\nConclusão Com poucos blocos de código conseguimos autenticar, consultar linha, paradas, posição dos veículos e exibir tudo em um mapa interativo."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#mapa-final",
+    "href": "posts/post-with-code/index.html#mapa-final",
+    "title": "Mapa Interativo de Ônibus em Tempo Real – Usando a API Olho Vivo",
+    "section": "Mapa Final",
+    "text": "Mapa Final"
+  }
+]
